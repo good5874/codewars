@@ -1,0 +1,32 @@
+#include <string>
+#include <vector>
+using namespace std;
+
+
+
+class DirReduction
+{
+public:
+    static std::vector<std::string> dirReduc(std::vector<std::string> &arr){
+ 
+ abc:
+	for (int i = 0; i < arr.size();++i) {
+		if (i == arr.size()-1)break;
+		if (arr[i] == "NORTH" && arr[i + 1] == "SOUTH" || arr[i] == "SOUTH" && arr[i + 1] == "NORTH") {
+			arr.erase(arr.begin() + i);
+			arr.erase(arr.begin() + i);
+			goto abc;
+			
+		}
+
+		if (arr[i] == "EAST" && arr[i + 1] == "WEST"|| arr[i] == "WEST" && arr[i + 1] == "EAST")
+		{
+			arr.erase(arr.begin() + i);
+			arr.erase(arr.begin() + i);
+			goto abc;
+		}
+		
+	}
+  return arr;
+  }
+};
