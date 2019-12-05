@@ -1,0 +1,84 @@
+#include <string>
+#include <vector>
+using namespace std;
+std::string highestScoringWord(const std::string &s)
+{
+//do not try to understand, it somehow works xD
+	string n;
+	int sum = 0;
+	int sum2 = 0;
+	const int N = 27;
+	vector <int> v;
+	int k = 0;
+	char c;
+	
+
+	char A[N] = { ' ','a','b','c','d','e', 'f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+	
+	
+	
+	for (int i = 0;i < s.length();++i)
+	{
+		
+
+		 c = s[i]; // c == 't'
+		
+		for (int j = 0;j < N;++j)
+		{
+			if (c == A[j])
+			{
+				sum = sum + j;
+				if (i == s.length()-1)
+				{
+
+					v.push_back(sum);
+					k = k + 1;
+					sum = 0;
+					break;
+				}
+				
+			}
+			if (c == ' ')
+			{	
+
+				v.push_back(sum);
+				k = k + 1;
+				sum = 0;
+				break;
+				
+			}			
+		}
+
+		
+		
+		
+	}
+	int max = v[0];
+	int g=0;
+	for (int i = 0; i < v.size(); ++i)
+	{
+		if (v[i] > max)
+		{
+			max = v[i];
+			g = i;
+			
+		}
+	}
+	int m = 0;
+	
+	for (int i = 0; i < s.size(); ++i) {
+		char z = s[i]; // c == 't'
+		if (z == ' ')
+		{
+			m += 1;
+		}
+		if (m == g)
+		{
+			if(s[i]!=' ')
+		 n = n+ s[i];
+			if (m - 1 == g)
+				break;
+		}
+	}
+	return n;
+}
