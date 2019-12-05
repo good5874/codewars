@@ -1,0 +1,44 @@
+#include <vector>
+#include <stack>
+#include <iostream>
+using namespace std;
+
+
+class Decomp
+{
+public:
+	static vector<long long> decompose(long long n)
+	{
+		stack<long long> result_st;
+		result_st.push(n);
+		long long nn = 0;
+		while (!result_st.empty())
+		{
+			long long current = result_st.top();
+			result_st.pop();
+			nn += current * current;
+			for (long long i = current - 1;i > 0;i--)
+			{
+				long long n2_n1 = i * i;
+				if (nn - n2_n1 >= 0)
+				{
+					result_st.push(i);
+					nn -= n2_n1;
+				}
+				if (nn == 0)
+				{
+					vector<long long> results;
+					while (!result_st.empty())
+					{
+						results.push_back(result_st.top());
+						result_st.pop();
+					}
+					
+					return results;
+				}
+			}
+		}
+
+		return vector<long long>();
+	}
+};
